@@ -1,25 +1,3 @@
-#' Statfi url
-#'
-#' Gives full statfi url
-#'
-#' @param ... Character vectors.
-#' @param .base_url A base url for statfi.
-#' @param with_base_url logical, whether to add the base of url to the output.
-#'    Defaults to \code{TRUE}
-#'
-#' @export
-#'
-#' @examples
-#'   statfi_url("StatFin", "vkour/statfin_vkour_pxt_12bq.px")
-#'
-statfi_url <- function(..., with_base_url = TRUE, .base_url = "https://statfin.stat.fi/PXWeb/api/v1/fi"){
-  if(with_base_url) {
-    file.path(.base_url, ..., fsep = "/")
-  } else {
-    file.path(..., fsep = "/")
-  }
-}
-
 #' Parse Statfi pxweb api url from web url
 #'
 #' Safe in these sense that if the argument is already an api url, returns the
@@ -39,14 +17,15 @@ statfi_url <- function(..., with_base_url = TRUE, .base_url = "https://statfin.s
 #'
 statfi_parse_url <- function(url, with_base_url = TRUE){
 
+  api_base_url <- "https://statfin.stat.fi/PXWeb/api/v1/fi/StatFin/"
+  qui_base_url <- "https://pxdata.stat.fi/PxWeb/pxweb/fi/StatFin/"
+
   url <- stringr::str_remove(url, "https://pxweb2.stat.fi/PxWeb/pxweb/fi/StatFin/")
   url <- stringr::str_remove(url, "https://statfin.stat.fi/PXWeb/api/v1/fi")
   url <- stringr::str_replace_all(url, "__", "/")
   statfi_url(url, with_base_url = with_base_url)
 
 }
-
-
 
 #' @describeIn statfi_parse_url Parsing function for archived databases.
 #'
