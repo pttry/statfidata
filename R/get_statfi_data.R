@@ -21,25 +21,25 @@ get_statfi_data.default <- function(url, query){
 }
 
 
-get_statfi_data.data.frame(df, save = NULL, ...) {
-
-  data_list <- list()
-
-  for(i in 1:dim(df)[1]) {
-
-    url <- statfidata::statfi_parse_url(df$table_location[i])
-    query <- df$query[i][[1]]
-    data <- statfidata::get_statfi_data(url = url, query = query)
-
-    data_name <- statfidata::get_table_code(url)
-
-    if(is.null(save)) {
-      data_list[[i]] <- data
-      names(data_list)[i] <- data_name
-     } else {
-      assign(data_name, data)
-      do.call(save, list(as.name(data_name), ...))
-    }
-  }
-
-}
+# get_statfi_data.data.frame(df, save = NULL, ...) {
+#
+#   data_list <- list()
+#
+#   for(i in 1:dim(df)[1]) {
+#
+#     url <- statfidata::statfi_parse_url(df$table_location[i])
+#     query <- df$query[i][[1]]
+#     data <- statfidata::get_statfi_data(url = url, query = query)
+#
+#     data_name <- statfidata::get_table_code(url)
+#
+#     if(is.null(save)) {
+#       data_list[[i]] <- data
+#       names(data_list)[i] <- data_name
+#      } else {
+#       assign(data_name, data)
+#       do.call(save, list(as.name(data_name), ...))
+#     }
+#   }
+#
+# }
